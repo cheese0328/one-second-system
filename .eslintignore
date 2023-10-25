@@ -1,0 +1,8 @@
+/src/**/*.d.ts
+/config
+public
+dist
+mock
+.eslintrc.js
+craco.config.ts
+tailwind.config.js
