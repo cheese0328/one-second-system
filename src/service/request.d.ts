@@ -130,4 +130,40 @@ namespace Req {
     userNo: string;
     refuseReason: string;
   };
+  type AdminLogin = {
+    adminName: string;
+    adminPwd: string;
+    no: string;
+    verifyCode: string;
+  };
+
+  type AdminAgentList = {
+    current: number;
+    pageSize: number;
+  };
+
+  type AdminCouponList = {
+    // couponName: string;
+    current: number;
+    pageSize: number;
+  };
+  type AdminAddCoupons = {
+    conditionService: string;
+    conditionsAmount: number;
+    couponName: string;
+    deadlineDays: number;
+    discountAmount: number;
+    limitNumber: number;
+    status: number;
+  };
+  type AdminUpdatestatus = {
+    couponNo: string;
+    status: string;
+  };
+  type ConfigCoupon = {
+    shareOpen: boolean;
+    newUserOpen: boolean;
+    newUserRules: { couponNo: string; probability: number }[];
+    shareUserRules: { couponNo: string; probability: number }[];
+  };
 }

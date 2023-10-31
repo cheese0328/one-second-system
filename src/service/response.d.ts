@@ -1,5 +1,3 @@
-import { type } from "os";
-
 namespace Res {
   type VerifyCode = {
     code: number;
@@ -179,6 +177,105 @@ namespace Res {
           updatedBy: string;
         }
       ];
+    };
+  };
+  type VerifyCode = {
+    code: number;
+    msg: string;
+    data: { svg: string; no: string };
+  };
+
+  type AdminLogin = {
+    code: number;
+    msg: null | string;
+    data?: null | object;
+  };
+
+  type AdminAgentList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: {
+        agentNo: string;
+        agentAccount: string;
+        mobileNumber: string;
+        realName: string;
+        status: number;
+        createTime: string;
+        updateTime: string;
+        defaultPwd: string;
+        updatedBy: string;
+      }[];
+    };
+  };
+  type AdminCoupon = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: {
+        id: number;
+        createTime: string;
+        updateTime: string;
+        couponNo: string;
+        couponName: string;
+        deadlineDays: number;
+        discountAmount: number;
+        conditionsAmount: number;
+        conditionService: string;
+        cumulativeDrawNo: number;
+        cumulativeUseNo: number;
+        limitNumber: number;
+        status: number;
+        updatedBy: string;
+      }[];
+    };
+  };
+  type AdminUpdatestatus = {
+    code: number;
+    msg: string;
+  };
+  type Coupon = {
+    code: number;
+    msg: string;
+    data: {
+      shareOpen: boolean;
+      newUserOpen: boolean;
+      newUserRules: { couponNo: string; probability: number }[];
+      shareUserRules: { couponNo: string; probability: number }[];
+    };
+  };
+  type CouponList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: {
+        id: number;
+        createTime: string;
+        updateTime: string;
+        couponNo: string;
+        couponName: string;
+        deadlineDays: number;
+        discountAmount: number;
+        conditionsAmount: number;
+        conditionService: string;
+        cumulativeDrawNo: number;
+        cumulativeUseNo: number;
+        limitNumber: number;
+        status: number;
+        updatedBy: string;
+      }[];
     };
   };
 }

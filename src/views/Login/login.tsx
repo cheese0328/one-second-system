@@ -7,7 +7,6 @@ import { Icon } from "@iconify/react";
 import styled from "styled-components";
 import { useRequest } from "ahooks";
 import { getVerifyCode, postAdminLogin } from "@/service/api";
-import { Res } from "@/service/response";
 
 const Wrapper = styled.div``;
 
