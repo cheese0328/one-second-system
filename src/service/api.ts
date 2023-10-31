@@ -11,8 +11,6 @@ export const postAdminLogin = async (data: Req.AdminLogin) =>
 export const getAdminAgent = async (params: Req.AdminAgentList) =>
   await request.get<Res.AdminAgentList>("/api/admin/agent/list", { params });
 
-// http://localhost:3000/api/admin/order/list?pageSize=20&totalPages=20
-
 // 订单管理
 export const getOrderList = async (params: Req.OrderList) =>
   await request.get<Res.OrderList>("/api/admin/order/list/", { params });
@@ -32,6 +30,6 @@ export const getOrderListData = async (data: Req.getOrderListData) =>
 export const getOrdercancelData = async (data: Req.CancelsetData) =>
   await request.post("/api/admin/config/ordercancel", data);
 
-// 小费配置
+// 提交小费配置
 export const getOrderfeelData = async (data: Req.FeesetData) =>
   await request.post("/api/admin/config/orderfee", data);
