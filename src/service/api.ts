@@ -33,3 +33,36 @@ export const getOrdercancelData = async (data: Req.CancelsetData) =>
 // 提交小费配置
 export const getOrderfeelData = async (data: Req.FeesetData) =>
   await request.post("/api/admin/config/orderfee", data);
+
+// 获取骑手列表
+export const getAdminRiderList = async (params: Req.AdminAgentList) =>
+  await request.get<Res.AdminRiderList>("/api/admin/rider/list", { params });
+
+// 骑手列表启用禁用状态管理
+export const putStatus = async (params: Req.RiderStatus) =>
+  await request.put("/api/admin/user/status", params);
+
+// 获取骑手审核列表
+export const getAdminRiderRegisterList = async (params: Req.AdminAgentList) =>
+  await request.get<Res.AdminRiderRegisterList>(
+    "/api/admin/rider/register/list",
+    {
+      params
+    }
+  );
+
+// 审核通过状态管理
+export const putAdminRiderPass = async (params: Req.RiderPass) =>
+  await request.put("/api/admin/rider/pass", params);
+
+// 拒绝审核状态管理
+export const putAdminRiderRefuse = async (params: Req.RiderRefuse) =>
+  await request.put("/api/admin/rider/refuse", params);
+
+// 获取运营城市列表
+export const getAdminCitysList = async (params: Req.AdminAgentList) =>
+  await request.get<Res.AdminCitysList>("/api/admin/citys/list", { params });
+
+// 城市列表启用禁用状态管理
+export const putCityStatus = async (params: Req.CityStatus) =>
+  await request.put("/api/admin/citys/status", params);
