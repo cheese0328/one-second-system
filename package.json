@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@ant-design/pro-components": "^2.6.34",
     "@iconify/json": "^2.2.133",
     "@iconify/react": "^4.1.1",
     "@testing-library/jest-dom": "^5.17.0",
@@ -20,6 +21,7 @@
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
+    "qs": "^6.11.2",
     "react": "^18.2.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^18.2.0",
