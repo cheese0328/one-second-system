@@ -30,6 +30,8 @@ import Agents from "./views/user/agent/agents";
 import Admins from "./views/user/admins";
 import Users from "./views/user/users";
 import AgreementRider from "./views/config/agreementRider";
+import AddCoupon from "./views/coupon/edit/addCoupons";
+import UpdateCoupons from "./views/coupon/edit/updateCoupons";
 
 const App: FC = () => {
   return (
@@ -63,6 +65,12 @@ const App: FC = () => {
             <Route path="/city/tag/tag" element={<Tag />} />
             <Route path="/coupon/coupons" element={<Coupons />} />
             <Route path="/coupon/setting" element={<Setting />} />
+            {/* 添加优惠卷  */}
+            <Route path="/coupon/edit/addCoupons" element={<AddCoupon />} />
+            <Route
+              path="/coupon/edit/updateCoupons/:id"
+              element={<UpdateCoupons />}
+            />
             <Route path="/config/cash" element={<Cash />} />
             <Route path="/config/app" element={<Apps />} />
             <Route path="/config/share" element={<Share />} />

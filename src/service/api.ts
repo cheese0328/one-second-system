@@ -1,6 +1,5 @@
 import request from "@/utils/request";
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import { Res } from "./response";
 
 export const getVerifyCode = async () =>
   await request.get<Res.VerifyCode>("/api/admin/verifycode");
@@ -66,3 +65,26 @@ export const getAdminCitysList = async (params: Req.AdminAgentList) =>
 // 城市列表启用禁用状态管理
 export const putCityStatus = async (params: Req.CityStatus) =>
   await request.put("/api/admin/citys/status", params);
+
+export const getadminCouponList = async (params: Req.AdminCouponList) =>
+  await request.get("/api/admin/coupon/list?current=1&pageSize=200", {
+    params
+  });
+export const adminCoupon = async (params?: Req.AdminCouponList) =>
+  await request.get("/api/admin/coupon/list?current=1&pageSize=200", {
+    params
+  });
+// 添加优惠券
+export const postadminAddCoupons = async (data: Req.AdminAddCoupons) =>
+  await request.post("/api/admin/coupon/add", data);
+
+// 修改状态
+export const postadimUpdateState = async (data: Req.AdminUpdatestatus) =>
+  await request.post<Res.AdminUpdatestatus>("/api/admin/coupon/status", data);
+
+// 优惠券设置
+export const configCoupon = async () =>
+  await request.get<Res.Coupon>("/api/admin/config/coupon");
+
+export const postConfigCoupon = async (data: Req.ConfigCoupon) =>
+  await request.post("/api/admin/config/coupon", data);
