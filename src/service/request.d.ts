@@ -112,4 +112,22 @@ namespace Req {
     status?: number;
     userNo?: number;
   };
+  type RiderStatus = {
+    userNo: string;
+    status: string;
+  };
+
+  type CityStatus = {
+    cityNo: string;
+    status: string;
+  };
+
+  type RiderPass = {
+    userNo: string;
+  };
+
+  type RiderRefuse = {
+    userNo: string;
+    refuseReason: string;
+  };
 }
