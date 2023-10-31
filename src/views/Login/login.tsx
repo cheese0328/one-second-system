@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { type FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { type AxiosResponse } from "axios";
@@ -6,6 +7,7 @@ import { Icon } from "@iconify/react";
 import styled from "styled-components";
 import { useRequest } from "ahooks";
 import { getVerifyCode, postAdminLogin } from "@/service/api";
+import { Res } from "@/service/response";
 
 const Wrapper = styled.div``;
 

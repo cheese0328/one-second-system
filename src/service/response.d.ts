@@ -1,3 +1,5 @@
+import { type } from "os";
+
 namespace Res {
   type VerifyCode = {
     code: number;
@@ -30,6 +32,61 @@ namespace Res {
         defaultPwd: string;
         updatedBy: string;
       }[];
+    };
+  };
+
+  // 订单管理
+  type DataType = {
+    key: React.Key;
+    name: string;
+    age: number;
+    address: string;
+    orderNo: string;
+    avatarUrl: string;
+  };
+
+  // 用户管理;
+
+  type OrderList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data;
+    };
+  };
+
+  type CancelsetData = {
+    code: number;
+    msg: string;
+    data: {
+      userCancelTips: [string, string, object];
+      adminCancelTips: string[];
+      agentCancelTips: string[];
+      riderCancelTips: string[];
+      userCancelRules: { price: number; timeRange: number[] }[];
+      riderCancelRules: { price: number; timeRange: number[] }[];
+    };
+  };
+
+  type FeesetData = {
+    code: number;
+    msg: string;
+    data: { feeTips: number[]; agentExtract: number; platformExtract: number };
+  };
+
+  type getOrderListData = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: undefined[];
     };
   };
 }
