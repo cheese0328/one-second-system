@@ -70,10 +70,12 @@ export const getadminCouponList = async (params: Req.AdminCouponList) =>
   await request.get("/api/admin/coupon/list?current=1&pageSize=200", {
     params
   });
+
 export const adminCoupon = async (params?: Req.AdminCouponList) =>
   await request.get("/api/admin/coupon/list?current=1&pageSize=200", {
     params
   });
+
 // 添加优惠券
 export const postadminAddCoupons = async (data: Req.AdminAddCoupons) =>
   await request.post("/api/admin/coupon/add", data);

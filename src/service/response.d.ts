@@ -33,6 +33,7 @@ namespace Res {
     };
   };
 
+  // 骑手列表
   type AdminRiderList = {
     code: number;
     msg: string;
@@ -55,6 +56,70 @@ namespace Res {
         avatarUrl: string;
         nickName: string;
       }[];
+    };
+  };
+
+  // 骑手审核列表
+  type AdminRiderRegisterList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: [
+        {
+          id: number;
+          createTime: string;
+          updateTime: string;
+          realname: string;
+          idCardNo: string;
+          avatarFaceImage: string;
+          nationalFaceImage: string;
+          status: number;
+          refuseReason: object;
+          userNo: string;
+          cityNo: string;
+          refuseReason: string;
+        }
+      ];
+    };
+  };
+
+  // 运营城市列表
+  type AdminCitysList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: [
+        {
+          id: number;
+          createTime: string;
+          updateTime: string;
+          cityNo: string;
+          cityName: string;
+          province: string;
+          agentNo: string;
+          startPrice: number;
+          extractHelpDeliver: number;
+          extractHelpGet: number;
+          extractHelpBuy: number;
+          extractHelpDeliverForAgent: number;
+          extractHelpGetForAgent: number;
+          extractHelpBuyForAgent: number;
+          citysValuationId: number;
+          citysWeightTagId: number;
+          citysTagGroupId: number;
+          status: number;
+          corwxChatid: object;
+          updatedBy: string;
+        }
+      ];
     };
   };
 
@@ -179,39 +244,7 @@ namespace Res {
       ];
     };
   };
-  type VerifyCode = {
-    code: number;
-    msg: string;
-    data: { svg: string; no: string };
-  };
 
-  type AdminLogin = {
-    code: number;
-    msg: null | string;
-    data?: null | object;
-  };
-
-  type AdminAgentList = {
-    code: number;
-    msg: string;
-    data: {
-      pageSize: number;
-      current: number;
-      count: number;
-      totalPages: number;
-      data: {
-        agentNo: string;
-        agentAccount: string;
-        mobileNumber: string;
-        realName: string;
-        status: number;
-        createTime: string;
-        updateTime: string;
-        defaultPwd: string;
-        updatedBy: string;
-      }[];
-    };
-  };
   type AdminCoupon = {
     code: number;
     msg: string;
@@ -238,10 +271,12 @@ namespace Res {
       }[];
     };
   };
+
   type AdminUpdatestatus = {
     code: number;
     msg: string;
   };
+
   type Coupon = {
     code: number;
     msg: string;
@@ -252,6 +287,7 @@ namespace Res {
       shareUserRules: { couponNo: string; probability: number }[];
     };
   };
+
   type CouponList = {
     code: number;
     msg: string;

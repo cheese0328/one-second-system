@@ -112,6 +112,7 @@ namespace Req {
     status?: number;
     userNo?: number;
   };
+
   type RiderStatus = {
     userNo: string;
     status: string;
@@ -147,6 +148,7 @@ namespace Req {
     current: number;
     pageSize: number;
   };
+
   type AdminAddCoupons = {
     conditionService: string;
     conditionsAmount: number;
@@ -156,10 +158,12 @@ namespace Req {
     limitNumber: number;
     status: number;
   };
+
   type AdminUpdatestatus = {
     couponNo: string;
     status: string;
   };
+
   type ConfigCoupon = {
     shareOpen: boolean;
     newUserOpen: boolean;
