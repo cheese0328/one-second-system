@@ -170,4 +170,8 @@ namespace Req {
     newUserRules: { couponNo: string; probability: number }[];
     shareUserRules: { couponNo: string; probability: number }[];
   };
+  type getCapitaltrendData = {
+    current: number;
+    pageSize: number;
+  };
 }

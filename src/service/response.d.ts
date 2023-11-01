@@ -314,4 +314,16 @@ namespace Res {
       }[];
     };
   };
+
+  type getCapitaltrendData = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: string[];
+    };
+  };
 }

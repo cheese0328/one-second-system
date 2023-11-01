@@ -1,4 +1,4 @@
-import { Form, InputNumber, Button } from "antd";
+import { Form, Input, Button } from "antd";
 import { Icon } from "@iconify/react";
 import { PlusOutlined } from "@ant-design/icons";
 const Canelsetcomponent = (itmes: string, title: string) => {
@@ -10,7 +10,7 @@ const Canelsetcomponent = (itmes: string, title: string) => {
           {fields.map((field) => (
             <div key={field.key} className="flex items-center ">
               <Form.Item {...field} className="flex-1 mr-[20px]">
-                <InputNumber className="w-[100%]" />
+                <Input className="w-[100%]" />
               </Form.Item>
               <Form.Item>
                 <Button
