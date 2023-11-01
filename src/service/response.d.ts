@@ -4,13 +4,11 @@ namespace Res {
     msg: string;
     data: { svg: string; no: string };
   };
-
   type AdminLogin = {
     code: number;
     msg: null | string;
     data?: null | object;
   };
-
   type AdminAgentList = {
     code: number;
     msg: string;
@@ -32,7 +30,6 @@ namespace Res {
       }[];
     };
   };
-
   // 骑手列表
   type AdminRiderList = {
     code: number;
@@ -58,7 +55,6 @@ namespace Res {
       }[];
     };
   };
-
   // 骑手审核列表
   type AdminRiderRegisterList = {
     code: number;
@@ -86,7 +82,6 @@ namespace Res {
       ];
     };
   };
-
   // 运营城市列表
   type AdminCitysList = {
     code: number;
@@ -122,7 +117,6 @@ namespace Res {
       ];
     };
   };
-
   // 订单管理
   type DataType = {
     key: React.Key;
@@ -132,7 +126,6 @@ namespace Res {
     orderNo: string;
     avatarUrl: string;
   };
-
   type getOrderListData = {
     data: {
       id: number;
@@ -149,7 +142,6 @@ namespace Res {
       nickName: string;
     }[];
   };
-
   // 用户管理;
   type OrderList = {
     code: number;
@@ -162,7 +154,6 @@ namespace Res {
       data;
     };
   };
-
   type CancelsetData = {
     code: number;
     msg: string;
@@ -175,13 +166,11 @@ namespace Res {
       riderCancelRules: { price: number; timeRange: number[] }[];
     };
   };
-
   type FeesetData = {
     code: number;
     msg: string;
     data: { feeTips: number[]; agentExtract: number; platformExtract: number };
   };
-
   type AdminRiderRegisterList = {
     code: number;
     msg: string;
@@ -209,7 +198,6 @@ namespace Res {
       ];
     };
   };
-
   type AdminCitysList = {
     code: number;
     msg: string;
@@ -244,7 +232,6 @@ namespace Res {
       ];
     };
   };
-
   type AdminCoupon = {
     code: number;
     msg: string;
@@ -271,12 +258,10 @@ namespace Res {
       }[];
     };
   };
-
   type AdminUpdatestatus = {
     code: number;
     msg: string;
   };
-
   type Coupon = {
     code: number;
     msg: string;
@@ -287,7 +272,6 @@ namespace Res {
       shareUserRules: { couponNo: string; probability: number }[];
     };
   };
-
   type CouponList = {
     code: number;
     msg: string;
@@ -314,7 +298,6 @@ namespace Res {
       }[];
     };
   };
-
   type getCapitaltrendData = {
     code: number;
     msg: string;
@@ -389,5 +372,110 @@ namespace Res {
     code: number;
     msg: string;
     data: { withIntegral: number };
+  };
+
+  type AdminCityValuation = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: [
+        {
+          id: number;
+          createTime: string;
+          updateTime: string;
+          isDelete: number;
+          ruleName: string;
+          ruleContext: {
+            time: undefined[];
+            weight: {
+              gt: number;
+              lte: number;
+              price: number;
+              unitWeight: number;
+            }[];
+            distance: {
+              gt: number;
+              lte: number;
+              price: number;
+              unitDistance: number;
+            }[];
+          };
+          createdBy: string;
+          updatedBy: string;
+        },
+        {
+          id: number;
+          createTime: string;
+          updateTime: string;
+          isDelete: number;
+          ruleName: string;
+          ruleContext: {
+            time: { gt: number; lte: number; price: number }[];
+            weight: {
+              gt: number;
+              lte: number;
+              price: number;
+              unitWeight: number;
+            }[];
+            distance: {
+              gt: number;
+              lte: number;
+              price: number;
+              unitDistance: number;
+            }[];
+          };
+          createdBy: string;
+          updatedBy: string;
+        }
+      ];
+    };
+  };
+
+  type AdminCityWeight = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: {
+        id: number;
+        createTime: string;
+        updateTime: string;
+        isDelete: number;
+        tagName: string;
+        tags: { type: string; label: string; value: number[] }[];
+        createdBy: string;
+        updatedBy: string;
+      }[];
+    };
+  };
+
+  type AdminCityTag = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: [
+        {
+          id: number;
+          createTime: string;
+          updateTime: string;
+          isDelete: number;
+          groupName: string;
+          tags: string[];
+          createdBy: string;
+          updatedBy: string;
+        }
+      ];
+    };
   };
 }
