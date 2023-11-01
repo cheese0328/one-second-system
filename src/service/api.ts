@@ -13,9 +13,20 @@ export const getAdminAgent = async (params: Req.AdminAgentList) =>
 // 订单管理
 export const getOrderList = async (params: Req.OrderList) =>
   await request.get<Res.OrderList>("/api/admin/order/list/", { params });
+
+// 资金去向
+
+// http://192.168.145.28:8888/admin/order/capitaltrend/list?current=1&pageSize=20
+export const getCapitaltrendData = async (params: Req.getCapitaltrendData) =>
+  await request.get<Res.getCapitaltrendData>(
+    "/api/admin/order/capitaltrend/list",
+    { params }
+  );
+
 // 取消订单
 export const getCancelsetData = async () =>
   await request.get<Res.CancelsetData>("/api/admin/config/ordercancel");
+
 // 小费配置
 export const getFeesetData = async () =>
   await request.get<Res.FeesetData>("/api/admin/config/orderfee");
@@ -25,7 +36,6 @@ export const getOrderListData = async (data: Req.getOrderListData) =>
   await request.get<Res.getOrderListData>("/api/admin/order/list/", { data });
 
 // 提交保存取消订单配置
-
 export const getOrdercancelData = async (data: Req.CancelsetData) =>
   await request.post("/api/admin/config/ordercancel", data);
 

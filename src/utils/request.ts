@@ -8,7 +8,10 @@ const request = axios.create({
   timeoutErrorMessage: "请求超时，请稍后再试"
 });
 
+// 请求拦截器
 request.interceptors.request.use((config) => config);
+
+// 响应拦截器
 request.interceptors.response.use(async (response) => {
   if (response.data.code === 203) {
     await message.error(response.data.msg);

@@ -29,17 +29,18 @@ const treeData = [
   { label: "订单已完成", value: "4", title: "订单已完成" }
 ];
 
+// 页面结构
 const columns: ColumnsType<data> = [
   {
     title: "编号",
     dataIndex: "orderNo",
-    render: (_, { orderNo }) => <div className="w-[80px]">{orderNo}</div>
+    render: (_, { orderNo }) => <div className="w-[150px]">{orderNo}</div>
   },
   {
     title: "下单用户",
     dataIndex: "nickName",
     render: (_, { nickName, avatarUrl, mobileNumber }) => (
-      <div className="flex items-center w-[100px]">
+      <div className="flex items-center">
         <img
           className="w-[50px] h-[50px] rounded-[50%]"
           src={avatarUrl}
@@ -150,19 +151,23 @@ const columns: ColumnsType<data> = [
           items: [
             {
               key: "1",
-              label: <div>接单</div>
+              label: <div>接单</div>,
+              disabled: true
             },
             {
               key: "2",
-              label: <div>配送完成</div>
+              label: <div>配送完成</div>,
+              disabled: true
             },
             {
               key: "3",
-              label: <div>确认完成</div>
+              label: <div>确认完成</div>,
+              disabled: true
             },
             {
               key: "4",
-              label: <div>取消</div>
+              label: <div>取消</div>,
+              disabled: true
             }
           ]
         }}
@@ -211,22 +216,19 @@ interface data {
 const Orders: FC = () => {
   const [form] = useForm();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [getcurrent, setcurrent] = useState(1);
-  const [getInputData, setInputsData] = useState({});
+  const [getcurrent, setcurrent] = useState(1); // 页码存储
+  const [getInputData, setInputsData] = useState({}); // 搜索框内数据存储
+
+  // 数据请求
   const { data, refresh } = useRequest(
     async () =>
       await getOrderList({ current: getcurrent, pageSize: 20, ...getInputData })
   );
-  const list = data?.data?.data?.data;
 
   // 将Form表单中的数据存起来
   const onFinish = (values: string) => {
     console.log("Success:", values);
     setInputsData(values);
-  };
-
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    setSelectedRowKeys(newSelectedRowKeys);
   };
 
   // 当数据发生改变时 刷新页面
@@ -238,6 +240,10 @@ const Orders: FC = () => {
   const handleClear = () => {
     form.resetFields(); // 重置所有表单字段
     setInputsData(() => {});
+  };
+
+  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    setSelectedRowKeys(newSelectedRowKeys);
   };
   const rowSelection: TableRowSelection<data> = {
     selectedRowKeys,
@@ -298,8 +304,10 @@ const Orders: FC = () => {
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={list}
+        dataSource={data?.data?.data?.data}
         pagination={false}
+        rowKey={"orderNo"}
+        bordered
       />
       <div className="flex items-center justify-end">
         <p className="text-[14px]">共{data?.data?.data?.count}条数据</p>
@@ -309,7 +317,6 @@ const Orders: FC = () => {
             refresh();
           }}
           total={data?.data?.data?.count}
-          showSizeChanger
           pageSize={20}
         />
       </div>
