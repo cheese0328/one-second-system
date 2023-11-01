@@ -1,9 +1,10 @@
 import { type FC } from "react";
+// 用户指南
 
 const User: FC = () => {
   return (
     <>
-      <div>User</div>
+      <div id="example">123</div>
     </>
   );
 };

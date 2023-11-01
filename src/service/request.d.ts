@@ -174,4 +174,48 @@ namespace Req {
     current: number;
     pageSize: number;
   };
+
+  type postconfigcash = {
+    shareOpen: boolean;
+    newUserOpen: boolean;
+    newUserRules: { couponNo: string; probability: number }[];
+    shareUserRules: { couponNo: string; probability: number }[];
+  };
+
+  type postconfigAPP1 = {
+    wxAppId: string;
+    wxAppSecret: string;
+    qqAppid: string;
+    qqAppSecret: string;
+    ttAppid: string;
+    ttAppSecret: string;
+  };
+
+  type postconfigAPP2 = {
+    wxMchId: string;
+    notifyUrl: string;
+    wxMchSecert: string;
+  };
+
+  type postconfigAPP3 = { mapKey: string };
+
+  type postconfigAPP4 = {
+    accessKeyId: string;
+    accessKeySecret: string;
+    arn: string;
+    ossRegion: string;
+    ossBucket: string;
+    smsSignName: string;
+    smsTemplateCode: string;
+  };
+
+  type postconfigAPP5 = {
+    corpid: string;
+    corpsecret: string;
+    verifyChatid: string;
+  };
+
+  type postconfigintegral = { withIntegral: string | number };
+
+  type postconfigshare = { desc: string; path: string; title: string };
 }
