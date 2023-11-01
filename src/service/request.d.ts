@@ -218,4 +218,33 @@ namespace Req {
   type postconfigintegral = { withIntegral: string | number };
 
   type postconfigshare = { desc: string; path: string; title: string };
+
+  type AdminCityValuation = {
+    current: number;
+    pageSize: number;
+  };
+
+  type AdminCityWeight = {
+    current: number;
+    pageSize: number;
+  };
+
+  type AdminCityTag = {
+    current: number;
+    pageSize: number;
+  };
+
+  type AdminAddValuation = {
+    ruleName: string;
+    ruleContext: {
+      distance: {
+        gt: number;
+        lte: number;
+        unitDistance: number;
+        price: number;
+      }[];
+      weight: { gt: number; lte: number; unitWeight: number; price: number }[];
+      time: undefined[];
+    };
+  };
 }

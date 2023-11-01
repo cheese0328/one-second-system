@@ -15,7 +15,6 @@ export const getOrderList = async (params: Req.OrderList) =>
   await request.get<Res.OrderList>("/api/admin/order/list/", { params });
 
 // 资金去向
-
 // http://192.168.145.28:8888/admin/order/capitaltrend/list?current=1&pageSize=20
 export const getCapitaltrendData = async (params: Req.getCapitaltrendData) =>
   await request.get<Res.getCapitaltrendData>(
@@ -157,3 +156,30 @@ export const configintegral = async () =>
 
 export const postconfigshare = async (data: Req.postconfigshare) =>
   await request.post("/api/admin/config/share", data);
+
+export const getAdminCity = async (params: Req.AdminCityValuation) =>
+  await request.get<Res.AdminCityValuation>("/api/admin/citys/valuation/list", {
+    params: {
+      current: 1,
+      pageSize: 20
+    }
+  });
+
+export const getWeight = async (params: Req.AdminCityWeight) =>
+  await request.get<Res.AdminCityWeight>("/api/admin/citys/weight/list", {
+    params: {
+      current: 1,
+      pageSize: 20
+    }
+  });
+
+export const getTag = async (params: Req.AdminCityTag) =>
+  await request.get<Res.AdminCityTag>("/api/admin/citys/tag/list", {
+    params: {
+      current: 1,
+      pageSize: 20
+    }
+  });
+
+export const postValuation = async (data: Req.AdminAddValuation) =>
+  await request.post("/api/admin/citys/valuation/add", data);

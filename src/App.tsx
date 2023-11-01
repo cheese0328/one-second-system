@@ -32,6 +32,9 @@ import Users from "./views/user/users";
 import AgreementRider from "./views/config/agreementRider";
 import AddCoupon from "./views/coupon/edit/addCoupons";
 import UpdateCoupons from "./views/coupon/edit/updateCoupons";
+import Edit from "./views/city/valuation/edit";
+import EditWeight from "./views/city/weight/edit";
+import EditTag from "./views/city/tag/edit";
 
 const App: FC = () => {
   return (
@@ -61,6 +64,9 @@ const App: FC = () => {
             <Route path="/rider/cash" element={<RiderCash />} />
             <Route path="/city/citys" element={<Citys />} />
             <Route path="/city/valuation/valuations" element={<Valuations />} />
+            <Route path="/city/valuation/edit/add" element={<Edit />} />
+            <Route path="/city/weight/edit/add" element={<EditWeight />} />
+            <Route path="/city/tag/edit/add" element={<EditTag />} />
             <Route path="/city/weight/weight" element={<Weight />} />
             <Route path="/city/tag/tag" element={<Tag />} />
             <Route path="/coupon/coupons" element={<Coupons />} />
