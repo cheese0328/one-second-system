@@ -100,3 +100,60 @@ export const configCoupon = async () =>
 
 export const postConfigCoupon = async (data: Req.ConfigCoupon) =>
   await request.post("/api/admin/config/coupon", data);
+
+// 提现管理 获取数据
+export const configcash = async () =>
+  await request.get<Res.configcash>("/api/admin/config/coupon");
+
+// 提现管理 修改数组并上传
+export const postconfigcash = async (data: Req.postconfigcash) =>
+  await request.post("/api/admin/config/coupon", data);
+
+// 小程序设置
+export const configAPP1 = async () =>
+  await request.get<Res.configAPP1>("/api/admin/config/appauth");
+
+export const postconfigAPP1 = async (data: Req.postconfigAPP1) =>
+  await request.post("/api/admin/config/appauth", data);
+
+// 支付设置
+export const configAPP2 = async () =>
+  await request.get<Res.configAPP2>("/api/admin/config/appmch");
+
+export const postconfigAPP2 = async (data: Req.postconfigAPP2) =>
+  await request.post("/api/admin/config/appmch", data);
+
+// 地图设置
+export const configAPP3 = async () =>
+  await request.get<Res.configAPP3>("/api/admin/config/map");
+
+export const postconfigAPP3 = async (data: Req.postconfigAPP3) =>
+  await request.post("/api/admin/config/map", data);
+
+// 阿里云配置
+export const configAPP4 = async () =>
+  await request.get<Res.configAPP4>("/api/admin/config/ali");
+
+export const postconfigAPP4 = async (data: Req.postconfigAPP4) =>
+  await request.post("/api/admin/config/ali", data);
+
+// 企业微信配置
+export const configAPP5 = async () =>
+  await request.get<Res.configAPP5>("/api/admin/config/corwx");
+
+export const postconfigAPP5 = async (data: Req.postconfigAPP5) =>
+  await request.post("/api/admin/config/corwx", data);
+
+// 分享设置
+export const configshare = async () =>
+  await request.get<Res.configshare>("/api/admin/config/share");
+
+export const postconfigintegral = async (data: Req.postconfigintegral) =>
+  await request.post("/api/admin/config/integra", data);
+
+// 积分设置
+export const configintegral = async () =>
+  await request.get<Res.configintegral>("/api/admin/config/integral");
+
+export const postconfigshare = async (data: Req.postconfigshare) =>
+  await request.post("/api/admin/config/share", data);

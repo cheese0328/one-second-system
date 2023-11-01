@@ -326,4 +326,68 @@ namespace Res {
       data: string[];
     };
   };
+
+  type configcash = {
+    code: number;
+    msg: string;
+    data: {
+      shareOpen: boolean;
+      newUserOpen: boolean;
+      newUserRules: { couponNo: string; probability: number }[];
+      shareUserRules: { couponNo: string; probability: number }[];
+    };
+  };
+
+  type configAPP1 = {
+    code: number;
+    msg: string;
+    data: {
+      qqAppid: string;
+      ttAppid: string;
+      wxAppId: string;
+      qqAppSecret: string;
+      ttAppSecret: string;
+      wxAppSecret: string;
+    };
+  };
+
+  type configAPP2 = {
+    code: number;
+    msg: string;
+    data: { wxMchId: string; notifyUrl: string; wxMchSecert: string };
+  };
+
+  type configAPP3 = { code: number; msg: string; data: { mapKey: string } };
+
+  type configAPP4 = {
+    code: number;
+    msg: string;
+    data: {
+      arn: string;
+      ossBucket: string;
+      ossRegion: string;
+      accessKeyId: string;
+      smsSignName: string;
+      accessKeySecret: string;
+      smsTemplateCode: string;
+    };
+  };
+
+  type configAPP5 = {
+    code: number;
+    msg: string;
+    data: { corpid: string; corpsecret: string; verifyChatid: string };
+  };
+
+  type configshare = {
+    code: number;
+    msg: string;
+    data: { desc: string; path: string; title: string };
+  };
+
+  type configintegral = {
+    code: number;
+    msg: string;
+    data: { withIntegral: number };
+  };
 }

@@ -1,5 +1,5 @@
 import { type FC } from "react";
-
+// 骑手协议
 const AgreementRider: FC = () => {
   return (
     <>
