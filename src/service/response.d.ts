@@ -478,4 +478,15 @@ namespace Res {
       ];
     };
   };
+  type AdminInfo = {
+    code: number;
+    msg: string;
+    data: {
+      adminNo: string;
+      mobileNumber: string;
+      adminName: string;
+      realName: string;
+      avatarUrl: object;
+    };
+  };
 }

@@ -11,28 +11,39 @@ import {
   Button,
   notification
 } from "antd";
-import { postadminAddCoupons } from "@/service/api";
-import { useNavigate } from "react-router-dom";
+import { putupdateCoupons } from "@/service/api";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateCoupons: FC = () => {
-  // const { id } = useParams()
-  // const str = new URLSearchParams();
+  const { id } = useParams();
+  const valuedata = new URLSearchParams(id);
+  const UrlObj = Object.fromEntries(valuedata.entries());
   const nav = useNavigate();
-  const onRunrunAdminAddCouponsSuccess = (res: any) => {
+
+  interface updatecoupons {
+    data: {
+      code: number;
+      msg: string;
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: [];
+    };
+  }
+  const onRunrunAdminAddCouponsSuccess = (res: updatecoupons) => {
+    console.log(res);
+
     if (res.data.code === 200) {
       notification.success({
         message: "修改成功",
         description: "修改成功！"
       });
-      // navigate("/");
+      nav(-1);
     }
   };
   const { run: runAdminAddCoupons } = useRequest(
-    async (values) => {
-      values.conditionService = values.conditionService.value;
-
-      return await postadminAddCoupons({ ...values });
-    },
+    async (values) => await putupdateCoupons({ ...values }),
     {
       manual: true,
       onSuccess: onRunrunAdminAddCouponsSuccess
@@ -40,12 +51,6 @@ const UpdateCoupons: FC = () => {
   );
 
   const [form] = Form.useForm();
-
-  // const onFinish = (values) => {
-  //   console.log(values);
-  //   console.log(form);
-  // };
-  // console.log(from);
 
   return (
     <>
@@ -67,6 +72,19 @@ const UpdateCoupons: FC = () => {
         className="ml-[20px] w-[500px]"
         form={form}
         onFinish={runAdminAddCoupons}
+        initialValues={
+          // UrlObj
+          {
+            couponName: UrlObj.couponName,
+            discountAmount: Number(UrlObj.discountAmount),
+            conditionsAmount: Number(UrlObj.conditionsAmount),
+            conditionService: UrlObj.conditionService,
+            limitNumber: Number(UrlObj.limitNumber),
+            deadlineDays: Number(UrlObj.deadlineDays),
+            status: Number(UrlObj.status),
+            couponNo: UrlObj.couponNo
+          }
+        }
       >
         {/* 优惠卷名称 */}
 
@@ -76,7 +94,7 @@ const UpdateCoupons: FC = () => {
         </div>
         <Form.Item name="couponName">
           <Input
-            placeholder="请输入优惠卷名称"
+            defaultValue={UrlObj.couponName}
             className=" w-[500px] h-[40px] mt-[10px]"
           />
         </Form.Item>
@@ -88,8 +106,7 @@ const UpdateCoupons: FC = () => {
               <InputNumber
                 min={0}
                 max={100000}
-                defaultValue={0}
-                // onChange={onChange}
+                defaultValue={Number(UrlObj.deadlineDays)}
                 className="w-[238.4px] mt-[10px]"
               />
             </Form.Item>
@@ -101,7 +118,7 @@ const UpdateCoupons: FC = () => {
               <InputNumber
                 min={0}
                 max={100000}
-                defaultValue={0}
+                defaultValue={Number(UrlObj.conditionsAmount)}
                 // onChange={onChange}
                 className="w-[238.4px] mt-[10px]"
               />
@@ -117,7 +134,7 @@ const UpdateCoupons: FC = () => {
           <Form.Item name="conditionService">
             <Select
               labelInValue
-              defaultValue={{ value: "types", label: "全部" }}
+              defaultValue={{ value: UrlObj.conditionService }}
               style={{ width: 500, marginRight: 8, height: 40 }}
               options={[
                 {
@@ -147,7 +164,7 @@ const UpdateCoupons: FC = () => {
           <InputNumber
             min={0}
             max={100000}
-            defaultValue={0}
+            defaultValue={Number(UrlObj.limitNumber)}
             // onChange={onChange}
             className="w-[238.4px] mt-[10px]"
           />
@@ -157,7 +174,10 @@ const UpdateCoupons: FC = () => {
           <div>有效天数 :</div>
         </div>
         <Form.Item name="deadlineDays">
-          <Input defaultValue={-1} className=" w-[500px] h-[40px] mt-[10px]" />
+          <Input
+            defaultValue={Number(UrlObj.deadlineDays)}
+            className=" w-[500px] h-[40px] mt-[10px]"
+          />
         </Form.Item>
         <div className="text-[#999] text-[14px]">
           领取后开始计算到期时间, -1为不限
@@ -165,12 +185,16 @@ const UpdateCoupons: FC = () => {
 
         {/* 状态 */}
         <Form.Item name="status">
-          <Radio.Group name="radiogroup" defaultValue={1}>
+          <Radio.Group name="radiogroup" defaultValue={Number(UrlObj.status)}>
             <Radio value={1}>启用</Radio>
             <Radio value={0}>禁用</Radio>
           </Radio.Group>
         </Form.Item>
 
+        {/* couponNo */}
+        <Form.Item name="couponNo" style={{ display: "none" }}>
+          <input type="text" />
+        </Form.Item>
         {/* 提交保存 */}
         <Form.Item>
           <Button
