@@ -89,9 +89,15 @@ export const adminCoupon = async (params?: Req.AdminCouponList) =>
 export const postadminAddCoupons = async (data: Req.AdminAddCoupons) =>
   await request.post("/api/admin/coupon/add", data);
 
-// 修改状态
-export const postadimUpdateState = async (data: Req.AdminUpdatestatus) =>
-  await request.post<Res.AdminUpdatestatus>("/api/admin/coupon/status", data);
+/// 修改状态
+export const putCouponsState = async (params: Req.AdminUpdatestatus) =>
+  await request.put("/api/admin/coupon/status", params);
+// 修改优惠券消息
+export const putupdateCoupons = async (params: Req.AdmiupdateCoupons) =>
+  await request.put("/api/admin/coupon/update", params);
+// 跳转管理员
+export const adminInfo = async () =>
+  await request.get<Res.AdminInfo>("/api/admin/info");
 
 // 优惠券设置
 export const configCoupon = async () =>

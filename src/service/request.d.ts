@@ -247,4 +247,15 @@ namespace Req {
       time: undefined[];
     };
   };
+  type AdmiupdateCoupons = {
+    couponName: string;
+    deadlineDays: number;
+    discountAmount: number;
+    conditionsAmount: number;
+    conditionService: string;
+    limitNumber: number;
+    status: number;
+    couponNo: string;
+  };
+
 }

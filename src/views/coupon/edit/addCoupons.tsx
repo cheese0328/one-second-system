@@ -16,7 +16,18 @@ import { useNavigate } from "react-router-dom";
 // type MyType = number | null;
 const AddCoupon: FC = () => {
   const nav = useNavigate();
-  const onRunrunAdminAddCouponsSuccess = (res: any) => {
+  interface addcoupons {
+    data: {
+      code: number;
+      msg: string;
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: [];
+    };
+  }
+  const onRunrunAdminAddCouponsSuccess = (res: addcoupons) => {
     if (res.data.code === 200) {
       notification.success({
         message: "添加成功",

@@ -56,7 +56,6 @@ const Setting: FC = () => {
   };
   const { run: runConfigCoupon } = useRequest(
     async (values: Req.ConfigCoupon) =>
-      // eslint-disable-next-line @typescript-eslint/return-await
       await postConfigCoupon({ ...values, ...ConfigCoupon }),
     {
       manual: true

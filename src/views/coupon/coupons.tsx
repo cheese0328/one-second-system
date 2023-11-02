@@ -1,9 +1,19 @@
+/* eslint-disable no-console */
 import { Icon } from "@iconify/react";
 import { useRequest } from "ahooks";
-import { Button, Dropdown, Input, Select, Table, Tag, Form } from "antd";
+import {
+  Button,
+  Dropdown,
+  Input,
+  Select,
+  Table,
+  Tag,
+  Form,
+  message
+} from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useEffect, useRef, useState } from "react";
-import { getadminCouponList } from "@/service/api";
+import { getadminCouponList, putCouponsState, adminInfo } from "@/service/api";
 import { useNavigate } from "react-router-dom";
 
 interface DataType {
@@ -123,44 +133,79 @@ const columns: ColumnsType<DataType> = [
 const Coupons = () => {
   // 请求并拿到数据
   const nav = useNavigate();
-  // const items: MenuProps["items"] = [
-  //   {
-  //     key: "1",
-  //     label: (
-  //       <div
-  //         onClick={() => {
-  //           nav("/coupon/updateCoupons");
-  //         }}
-  //       >
-  //         修改
-  //       </div>
-  //     )
-  //   },
-  //   {
-  //     key: "2",
-  //     label: <div>启用</div>
-  //   },
-  //   {
-  //     key: "3",
-  //     label: <div>禁用</div>
-  //   }
-  // ];
+  const [info, setInfo] = useState<Res.AdminInfo>();
+  const inputRef = useRef(null);
+  useEffect(() => {
+    adminInfo()
+      .then((res) => {
+        // console.log(res);
+        setInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const currentID = 1;
   // const [output, setOutput] = useState();
   const [seek, setSeek] = useState({});
   const { data, refresh } = useRequest(
     async () =>
-      // eslint-disable-next-line @typescript-eslint/return-await
       await getadminCouponList({ current: currentID, pageSize: 20, ...seek })
   );
   useEffect(() => {
     refresh();
-  }, [currentID, refresh, seek]);
+  }, [seek]);
+  // 更改状态请求
+  const onFinishStaus = (couponNo: string, status: string) => {
+    putCouponsState({ couponNo, status })
+      .then((res) => {
+        if (res.data.code === 200) {
+          void message.success(res.data.msg);
+          refresh();
+        }
+      })
+      .catch((rsq) => {
+        refresh();
+      });
+  };
+  // const onruningSuccessStaus = (res: any) => {
+  //   if (res.data.code === 200) {
+  //     notification.success({
+  //       message: "修改成功",
+  //       description: "修改成功！"
+  //     });
+  //     nav("/coupon/coupons");
+  //   }
+  // };
+
+  // const { run: runingStaus } = useRequest(
+  //   async (value) => await putCouponsState({ ...value }),
+  //   {
+  //     manual: true,
+  //     onSuccess: onruningSuccessStaus
+  //   }
+  // );
   // 用户信息 dataPoop
   const dataPoop: DataType[] = [];
-  data?.data.data.data.forEach((item: any, index: number) => {
+  interface RenderingData {
+    id: number;
+    createTime: string;
+    updateTime: string;
+    couponNo: string;
+    couponName: string;
+    deadlineDays: number;
+    discountAmount: number;
+    conditionsAmount: number;
+    conditionService: string;
+    cumulativeDrawNo: number;
+    cumulativeUseNo: number;
+    limitNumber: number;
+    status: number;
+    updatedBy: string;
+  }
+  data?.data.data.data.forEach((item: RenderingData) => {
     dataPoop.push({
-      key: `${index}`,
+      key: `${item.id}`,
       name: `${item.couponName}`,
       ranges: [`${item.conditionService}`],
       money: `${item.discountAmount}元`,
@@ -181,7 +226,12 @@ const Coupons = () => {
       ),
       operate: (
         <div className=" flex items-center text-[#955ce6]">
-          <Icon icon="fa6-solid:user-gear" />
+          <Icon
+            icon="fa6-solid:user-gear"
+            onClick={() => {
+              nav(`/user/admins?adminNo=${info?.data.adminNo}`);
+            }}
+          />
           <Dropdown
             placement="bottom"
             dropdownRender={() => {
@@ -190,17 +240,55 @@ const Coupons = () => {
                   <Button
                     type="text"
                     onClick={() => {
+                      // console.log(item.discountAmount);
+
                       nav(
-                        `/coupon/edit/updateCoupons/key=${index}&name=${item.couponName}&ranges=${item.conditionService}&
-                        money=${item.discountAmount}&meet=${item.conditionsAmount}&day=${item.deadlineDays}&
-                        recNumber=${item.cumulativeUseNo}${item.limitNumber}`
+                        `/coupon/edit/updateCoupons/id=${item.id}&couponName=${item.couponName}&conditionService=${item.conditionService}&discountAmount=${item.discountAmount}&conditionsAmount=${item.conditionsAmount}&deadlineDays=${item.deadlineDays}&status=${item.status}&couponNo=${item.couponNo}&limitNumber=${item.limitNumber}`
                       );
                     }}
                   >
                     修改
                   </Button>
-                  <Button type="text">启用</Button>
-                  <Button type="text">禁用</Button>
+                  {item.status === 0 ? (
+                    <Button
+                      type="text"
+                      onClick={() => {
+                        onFinishStaus(item.couponNo, "1");
+                      }}
+                    >
+                      启用
+                    </Button>
+                  ) : (
+                    <Button
+                      type="text"
+                      disabled
+                      onClick={() => {
+                        onFinishStaus(item.couponNo, "1");
+                      }}
+                    >
+                      启用
+                    </Button>
+                  )}
+                  {item.status === 1 ? (
+                    <Button
+                      type="text"
+                      onClick={() => {
+                        onFinishStaus(item.couponNo, "0");
+                      }}
+                    >
+                      禁用
+                    </Button>
+                  ) : (
+                    <Button
+                      type="text"
+                      disabled
+                      onClick={() => {
+                        onFinishStaus(item.couponNo, "0");
+                      }}
+                    >
+                      禁用
+                    </Button>
+                  )}
                 </div>
               );
             }}
@@ -223,15 +311,22 @@ const Coupons = () => {
     selectedRowKeys,
     onChange: onSelectChange
   };
-  const inputRef = useRef(null);
-  const onFinish = (values: { couponNam?: string }) => {
+  // const inputRef = useRef(null);
+  const onFinish = (values: { couponNam?: string | undefined | null }) => {
     setSeek(values);
+    refresh();
+  };
+  const [form] = Form.useForm();
+  const changvalue = () => {
+    form.resetFields();
+    refresh();
+    setSeek(() => {});
   };
 
   return (
     <div>
       <h1 className="text-[24px] font-[500]">优惠券列表</h1>
-      <Form onFinish={onFinish}>
+      <Form onFinish={onFinish} form={form}>
         <div className=" flex flex-wrap">
           {/* <Form onFinish={onFinish} /> */}
           {/* <Form onFinish={onFinish}> */}
@@ -244,8 +339,9 @@ const Coupons = () => {
           </Form.Item>
           <Select
             labelInValue
-            defaultValue={{ value: "types", label: "优惠券类型" }}
-            style={{ width: 200, marginRight: 8 }}
+            // defaultValue={{ value: "types", label: "优惠券类型" }}
+            placeholder="优惠券类型"
+            style={{ width: 200, marginRight: 8, height: 40 }}
             options={[
               {
                 value: "ALL",
@@ -267,8 +363,8 @@ const Coupons = () => {
           />
           <Select
             labelInValue
-            defaultValue={{ value: "state", label: "状态" }}
-            style={{ width: 200 }}
+            placeholder="状态"
+            style={{ width: 200, marginRight: 8, height: 40 }}
             options={[
               {
                 value: "all",
@@ -291,6 +387,8 @@ const Coupons = () => {
           <Button
             className="w-[120px] h-[40px] mr-[4px]"
             onClick={() => {
+              changvalue();
+              setSeek("");
               refresh();
             }}
           >
