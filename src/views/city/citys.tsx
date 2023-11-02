@@ -18,6 +18,7 @@ import type { ColumnsType } from "antd/es/table";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import { getAdminCitysList, putCityStatus } from "@/service/api";
+import { useNavigate } from "react-router-dom";
 
 const Wrappers = styled.div`
   .ant-select-selector {
@@ -45,6 +46,8 @@ const Wrappers = styled.div`
 const Citys: FC = () => {
   const { Option } = Select;
 
+  const navigate = useNavigate();
+
   // 搜索功能
   const [searchData, setSearchData] = useState({});
   useEffect(() => {
@@ -62,10 +65,6 @@ const Citys: FC = () => {
   );
 
   // 启用禁用状态切换
-  // const [change] = useState(0);
-  // useEffect(() => {
-  //   refresh();
-  // }, [change]);
   const statusChange = (cityNo: string, status: string) => {
     putCityStatus({ cityNo, status })
       .then((res) => {
@@ -106,6 +105,7 @@ const Citys: FC = () => {
     createTime: string;
     updateTime: string;
     status: number;
+    agentNo: string;
   }
 
   const columns: ColumnsType<DataType> = [
@@ -156,6 +156,20 @@ const Citys: FC = () => {
       )
     },
     {
+      title: "代理人",
+      render: (text: string, record: DataType) => (
+        <div className="flex justify-center items-center">
+          <Tooltip placement="top" title="代理人" className="cursor-pointer">
+            <Icon
+              icon="octicon:people-16"
+              color="#955ce6"
+              className="text-[18px]"
+            />
+          </Tooltip>
+        </div>
+      )
+    },
+    {
       title: "状态",
       dataIndex: "status",
       render: (status: number, record: DataType) => (
@@ -182,7 +196,7 @@ const Citys: FC = () => {
     {
       title: "操作",
       dataIndex: "mobileNumber",
-      render: (text: string, record) => (
+      render: (text: string, record: DataType) => (
         <div className="flex items-center">
           <Tooltip placement="top" title="操作人" className="cursor-pointer">
             <Icon
@@ -196,7 +210,18 @@ const Citys: FC = () => {
               items: [
                 {
                   key: "1",
-                  label: <Button type="text">创建群聊</Button>
+                  label: (
+                    <Button
+                      type="text"
+                      onClick={() => {
+                        navigate(
+                          `/city/edit/chat/${record.cityNo}${record.cityName}`
+                        );
+                      }}
+                    >
+                      创建群聊
+                    </Button>
+                  )
                 },
                 {
                   key: "2",
@@ -285,11 +310,8 @@ const Citys: FC = () => {
                   />
                 </Form.Item>
                 <Form.Item name="status" className="mr-[8px] mb-[8px]">
-                  <Input className="w-[200px] h-[40px]" placeholder="手机号" />
-                </Form.Item>
-                <Form.Item name="dropDown" className="mr-[8px] mb-[8px]">
                   <Select placeholder="状态">
-                    <Option value="null">状态：全部</Option>
+                    <Option>状态：全部</Option>
                     <Option value="1">状态：启用</Option>
                     <Option value="0">状态：禁用</Option>
                   </Select>
