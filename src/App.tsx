@@ -35,6 +35,9 @@ import UpdateCoupons from "./views/coupon/edit/updateCoupons";
 import Edit from "./views/city/valuation/edit";
 import EditWeight from "./views/city/weight/edit";
 import EditTag from "./views/city/tag/edit";
+import Chat from "./views/city/edit/chat";
+import Update from "./views/city/edit/update";
+import Add from "./views/city/edit/add";
 
 const App: FC = () => {
   return (
@@ -69,6 +72,9 @@ const App: FC = () => {
             <Route path="/city/tag/edit/add" element={<EditTag />} />
             <Route path="/city/weight/weight" element={<Weight />} />
             <Route path="/city/tag/tag" element={<Tag />} />
+            <Route path="/city/edit/chat/:id" element={<Chat />} />
+            <Route path="/city/edit/update" element={<Update />} />
+            <Route path="/city/edit/add" element={<Add />} />
             <Route path="/coupon/coupons" element={<Coupons />} />
             <Route path="/coupon/setting" element={<Setting />} />
             {/* 添加优惠卷  */}

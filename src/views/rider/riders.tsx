@@ -264,7 +264,7 @@ const Riders: FC = () => {
                 </Form.Item>
                 <Form.Item name="status" className="mr-[8px] mb-[8px]">
                   <Select placeholder="状态">
-                    <Option value="null">状态：全部</Option>
+                    <Option>状态：全部</Option>
                     <Option value="1">状态：启用</Option>
                     <Option value="0">状态：禁用</Option>
                   </Select>
