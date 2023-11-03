@@ -131,6 +131,7 @@ namespace Req {
     userNo: string;
     refuseReason: string;
   };
+
   type AdminLogin = {
     adminName: string;
     adminPwd: string;
@@ -170,6 +171,7 @@ namespace Req {
     newUserRules: { couponNo: string; probability: number }[];
     shareUserRules: { couponNo: string; probability: number }[];
   };
+
   type getCapitaltrendData = {
     current: number;
     pageSize: number;
@@ -247,6 +249,7 @@ namespace Req {
       time: undefined[];
     };
   };
+
   type AdmiupdateCoupons = {
     couponName: string;
     deadlineDays: number;
@@ -258,4 +261,8 @@ namespace Req {
     couponNo: string;
   };
 
+  type AdminAgent = {
+    current: number;
+    pageSize: number;
+  };
 }

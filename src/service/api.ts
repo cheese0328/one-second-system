@@ -92,9 +92,11 @@ export const postadminAddCoupons = async (data: Req.AdminAddCoupons) =>
 /// 修改状态
 export const putCouponsState = async (params: Req.AdminUpdatestatus) =>
   await request.put("/api/admin/coupon/status", params);
+
 // 修改优惠券消息
 export const putupdateCoupons = async (params: Req.AdmiupdateCoupons) =>
   await request.put("/api/admin/coupon/update", params);
+
 // 跳转管理员
 export const adminInfo = async () =>
   await request.get<Res.AdminInfo>("/api/admin/info");
@@ -189,3 +191,19 @@ export const getTag = async (params: Req.AdminCityTag) =>
 
 export const postValuation = async (data: Req.AdminAddValuation) =>
   await request.post("/api/admin/citys/valuation/add", data);
+
+// 代理代表
+export const getAgentList = async (params: Req.AdminAgentList) =>
+  await request.get<Res.AgentList>("/api/admin/agent/list", { params });
+
+// 管理员列表
+export const getAdminsList = async (params: Req.AdminAgentList) =>
+  await request.get<Res.AdminsList>("/api/admin/list", { params });
+
+// 用户列表
+export const getUserList = async (params: Req.AdminAgentList) =>
+  await request.get<Res.UserList>("/api/admin/user/list", { params });
+
+// 数据总览
+export const getGobelList = async (params: Req.AdminAgentList) =>
+  await request.get<Res.GobalList>("/api/admin/analysis/total", { params });

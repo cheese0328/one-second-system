@@ -309,7 +309,6 @@ namespace Res {
       data: string[];
     };
   };
-
   type configcash = {
     code: number;
     msg: string;
@@ -320,7 +319,6 @@ namespace Res {
       shareUserRules: { couponNo: string; probability: number }[];
     };
   };
-
   type configAPP1 = {
     code: number;
     msg: string;
@@ -333,15 +331,12 @@ namespace Res {
       wxAppSecret: string;
     };
   };
-
   type configAPP2 = {
     code: number;
     msg: string;
     data: { wxMchId: string; notifyUrl: string; wxMchSecert: string };
   };
-
   type configAPP3 = { code: number; msg: string; data: { mapKey: string } };
-
   type configAPP4 = {
     code: number;
     msg: string;
@@ -355,25 +350,21 @@ namespace Res {
       smsTemplateCode: string;
     };
   };
-
   type configAPP5 = {
     code: number;
     msg: string;
     data: { corpid: string; corpsecret: string; verifyChatid: string };
   };
-
   type configshare = {
     code: number;
     msg: string;
     data: { desc: string; path: string; title: string };
   };
-
   type configintegral = {
     code: number;
     msg: string;
     data: { withIntegral: number };
   };
-
   type AdminCityValuation = {
     code: number;
     msg: string;
@@ -434,7 +425,6 @@ namespace Res {
       ];
     };
   };
-
   type AdminCityWeight = {
     code: number;
     msg: string;
@@ -455,7 +445,6 @@ namespace Res {
       }[];
     };
   };
-
   type AdminCityTag = {
     code: number;
     msg: string;
@@ -487,6 +476,139 @@ namespace Res {
       adminName: string;
       realName: string;
       avatarUrl: object;
+    };
+  };
+
+  type AdminAgentList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: {
+        agentNo: string;
+        agentAccount: string;
+        mobileNumber: string;
+        realName: string;
+        status: number;
+        createTime: string;
+        updateTime: string;
+        defaultPwd: string;
+        updatedBy: string;
+      }[];
+    };
+  };
+
+  type AdminAgentList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: {
+        agentNo: string;
+        agentAccount: string;
+        mobileNumber: string;
+        realName: string;
+        status: number;
+        createTime: string;
+        updateTime: string;
+        defaultPwd: string;
+        updatedBy: string;
+      }[];
+    };
+  };
+
+  type AgentList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: {
+        agentNo: string;
+        agentAccount: string;
+        mobileNumber: string;
+        realName: string;
+        status: number;
+        createTime: string;
+        updateTime: string;
+        defaultPwd: string;
+        updatedBy: string;
+      }[];
+    };
+  };
+
+  // 管理员列表
+  type AdminsList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      totalPages: number;
+      data: {
+        adminNo: string;
+        adminName: string;
+        mobileNumber: string;
+        realName: string;
+        status: number;
+        createTime: string;
+        updateTime: string;
+        defaultPwd: string;
+        updatedBy: string;
+      }[];
+    };
+  };
+
+  // 用户列表
+  type UserList = {
+    code: number;
+    msg: string;
+    data: {
+      pageSize: number;
+      current: number;
+      count: number;
+      data: [
+        {
+          id: number;
+          createTime: string;
+          updateTime: string;
+          userNo: string;
+          countryCode: string;
+          mobileNumber: string;
+          avatarUrl: string;
+          nickName: string;
+          gender: number;
+          province: object;
+          city: object;
+          area: string;
+          status: number;
+          homeAddressNo: object;
+          companyAddressNo: object;
+        }
+      ];
+    };
+  };
+  type GobalList = {
+    code: number;
+    msg: string;
+    data: {
+      userTotal: number;
+      orderCompleteTotal: number;
+      tradeTotal: number;
+      incomeTotal: number;
+      yesterdayUserTotal: string;
+      yesterdayOrderCompleteTotal: string;
+      yesterdayTradeTotal: number;
+      yesterdayIncomeTotal: number;
     };
   };
 }
